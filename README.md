@@ -1,6 +1,7 @@
 # Rose Harbour
 
 New personal website project for myself using Astro!
+
 So far, the site's theme has been based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
 
 Start your own using the following:

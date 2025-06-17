@@ -1,5 +1,8 @@
 {
   "jsxSingleQuote": true,
   "singleQuote": true,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "endOfLine": "lf",
+  "printWidth": 120,
+  "proseWrap": "always"
 }
