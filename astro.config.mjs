@@ -7,4 +7,14 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://example.com',
   integrations: [mdx(), sitemap()],
+
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'solarized-light',
+        dark: 'solarized-dark',
+      },
+      defaultColor: 'light-dark()',
+    },
+  },
 });
