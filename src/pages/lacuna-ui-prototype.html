@@ -1,0 +1,1596 @@
+<!doctype html>
+<html lang='en'>
+
+  <head>
+    <title>Lacuna Demo</title>
+
+    <link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.0/semantic.min.css">
+
+    <style>
+      body {
+        overflow: hidden;
+      }
+
+      /* Stop tooltips from hding behind anything. */
+      .tooltip {
+        z-index: 9999999999;
+      }
+
+      .center-text {
+        text-align: center;
+      }
+
+      #main {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        padding: 15px;
+      }
+
+      #top-menu,
+      #bottom-menu {
+        position: fixed;
+        margin: 0;
+        z-index: 1000;
+      }
+
+      /* This makes the menu only as wide as it's content instead of being fluid */
+      #top-menu {
+        width: auto;
+        display: inline-block;
+        height: auto;
+      }
+
+      #bottom-menu {
+        bottom: 40px;
+      }
+
+      #left-sidebar-button-wrapper,
+      #right-sidebar-button-wrapper {
+        position: fixed;
+        z-index: 1000;
+      }
+
+      #left-sidebar-button-wrapper {
+        left: 15px;
+      }
+
+      #right-sidebar-button-wrapper {
+        right: 15px;
+      }
+
+      #chat-container {
+        width: 100%;
+        height: 25px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        position: fixed;
+        background-color: #ffffff;
+      }
+
+      #buildings-container {
+
+        /* Take up the entire screen. */
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+
+        background-image: url('http://raw.githubusercontent.com/plainblack/Lacuna-Assets/master/planet_side/surface-p35.jpg');
+        background-repeat: repeat;
+      }
+
+      .building {
+        color: #ffffff;
+        cursor: pointer;
+        position: absolute;
+      }
+
+      .building:hover {
+        border: 1px dashed #ffffff;
+        margin: -1px;
+      }
+
+      .building-level {
+
+        font-size: 2em;
+
+        /* Horizontal and vertical centering. */
+        text-align: center;
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+
+        /* Hide until mouse over. */
+        visibility: hidden;
+      }
+
+      .building:hover div.building-level {
+        visibility: visible;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!--
+    ==================
+    == LEFT SIDEBAR ==
+    ==================
+  -->
+
+    <div class="ui left vertical inverted sidebar menu">
+
+
+      <!--
+      ===========
+      == Links ==
+      ===========
+    -->
+      <div class="ui horizontal inverted divider">
+        Links
+      </div>
+      <a class="item">
+        <i class="rocket icon"></i>
+        About
+      </a>
+      <a class="item" target="_blank" href="http://us1.lacunaexpanse.com/starmap/">
+        <i class="map icon"></i>
+        Alliance Map
+      </a>
+      <a class="item" target="_blank" href="http://us1.lacunaexpanse.com/changes.txt">
+        <i class="code icon"></i>
+        Changes Log
+      </a>
+      <a class="item" target="_blank" href="http://community.lacunaexpanse.com/forums">
+        <i class="comments layout icon"></i>
+        Forums
+      </a>
+      <a class="item" target="_blank" href="http://www.lacunaexpanse.com/help/">
+        <i class="student icon"></i>
+        Help
+      </a>
+      <a class="item">
+        <i class="add user icon"></i>
+        Invite a Friend
+      </a>
+      <a class="item">
+        <i class="options icon"></i>
+        Options
+      </a>
+      <!--  TODO: implement this! -->
+      <a class="item">
+        <i class="wait icon"></i>
+        Server Clock
+      </a>
+      <a class="item" target="_blank" href="http://www.lacunaexpanse.com/terms/">
+        <i class="info circle icon"></i>
+        Terms of Service
+      </a>
+      <a class="item" target="_blank" href="http://lacunaexpanse.com/tutorial/">
+        <i class="marker icon"></i>
+        Tutorial
+      </a>
+      <a class="item" target="_blank" href="http://community.lacunaexpanse.com/wiki">
+        <i class="share alternate icon"></i>
+        Wiki
+      </a>
+    </div>
+
+
+    <!--
+    ===================
+    == RIGHT SIDEBAR ==
+    ===================
+  -->
+
+    <div class="ui right vertical inverted sidebar menu">
+
+      <!--
+      ==============
+      == Colonies ==
+      ==============
+    -->
+      <div class="ui horizontal inverted divider">
+        Colonies
+      </div>
+      <a class="item">
+        Tatooine
+      </a>
+      <a class="item">
+        Ocean
+      </a>
+
+      <!--
+      ==============
+      == Stations ==
+      ==============
+    -->
+      <div class="ui horizontal inverted divider">
+        Stations
+      </div>
+      <a class="item">
+        Death Star
+      </a>
+    </div>
+
+    <div class="pusher">
+
+      <!-- This is the main content of the page. -->
+      <div id="main" class="ui segment">
+
+        <div id="left-sidebar-button-wrapper">
+          <div class="ui blue big icon button" id="left-sidebar-button">
+            <i class="content icon"></i>
+          </div>
+          <div class="ui pointing left large teal label">
+            1vasari
+          </div>
+        </div>
+
+        <div id="right-sidebar-button-wrapper">
+          <div class="ui pointing right large teal label">
+            Ocean
+          </div>
+          <div class="ui blue big icon button" id="right-sidebar-button">
+            <i class="world icon"></i>
+          </div>
+        </div>
+
+        <div class="ui blue inverted menu" id="top-menu">
+          <a class="item" data-content="Star Map">
+            <i class="map big icon"></i>
+          </a>
+          <a class="item" data-content="Mail">
+            <i class="mail big icon"></i>
+            <div class="ui yellow circular label">15</div>
+          </a>
+          <a class="item" data-content="Essentia">
+            <i class="money big icon"></i>
+            <div class="ui teal floated right circular label">573</div>
+          </a>
+          <a class="item" data-content="Universe Rankings">
+            <i class="find big icon"></i>
+          </a>
+          <a class="item" data-content="Sign Out">
+            <i class="power big icon"></i>
+          </a>
+        </div>
+
+
+        <div class="ui blue inverted icon menu" id="bottom-menu">
+
+          <!-- Food -->
+          <div class="item" id="foodItem">
+            <i class="food big icon"></i>
+            <p>
+              5 B / 20 B
+            </p>
+            1.5 B / hr
+          </div>
+
+          <!-- Ore -->
+          <div class="item">
+            <i class="diamond big icon"></i>
+            <p>
+              10 B / 20 B
+            </p>
+            1.5 B / hr
+          </div>
+
+          <!-- Water -->
+          <div class="item">
+            <i class="theme big icon"></i>
+            <p>
+              15 B / 20 B
+            </p>
+            1.5 B / hr
+          </div>
+
+          <!-- Energy -->
+          <div class="item">
+            <i class="lightning big icon"></i>
+            <p>
+              20 B / 20 B
+            </p>
+            1.5 B / hr
+          </div>
+
+          <!-- Trash -->
+          <div class="item">
+            <i class="trash big icon"></i>
+            <p>
+              20 B / 20 B
+            </p>
+            750 M / hr
+          </div>
+
+          <!-- Happiness -->
+          <div class="item">
+            <i class="smile big icon"></i>
+            <p>
+              250 T
+            </p>
+            100 B / hr
+          </div>
+
+          <!-- Plots -->
+          <div class="item">
+            <i class="block layout big icon"></i>
+            <p>
+              60 / 70 Plots
+            </p>
+            11 / 21 Building
+          </div>
+        </div>
+
+        <!-- Buildings view -->
+        <div id="buildings-container">
+          <div id="buildings-draggable"></div>
+        </div>
+
+        <!-- Chat bar -->
+        <div id="chat-container">
+          <div class="center-text">
+            This is the chat container.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+  <!-- Templates -->
+  <script id="template-building-tile" type="text/template">
+    <div class="building" style="
+      width: <%= size %>px;
+      height: <%= size %>px;
+
+      top: <%= ((parseInt(y, 10) - 5) * size * -1) %>px;
+      left: <%= ((parseInt(x, 10) + 5) * size) %>px;
+
+      <% if (!empty) { %>
+        background-image: url(
+          <%= window.assetsUrl + '/planet_side/' + size + '/' + image + '.png' %>
+        );
+      <% } %>
+    ">
+      <% if (empty) { %>
+        <div class="building-level">
+          <i class="configure large icon"></i>
+        </div>
+      <% } else { %>
+        <div class="building-level">
+          <%= level %>
+        </div>
+      <% } %>
+    </div>
+  </script>
+
+  <script type="text/javascript"
+    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript"
+    src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script type="text/javascript"
+    src="http://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.12/jquery.mousewheel.min.js"></script>
+  <script type="text/javascript"
+    src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.7.0/lodash.min.js"></script>
+
+  <script type="text/javascript"
+    src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.0/semantic.min.js"></script>
+
+  <script type="text/javascript">
+
+    // This is the data the server returns when `get_buildings` is called.
+    const buildingsData = {
+      "4965708": {
+        "efficiency": "100",
+        "name": "Black Hole Generator",
+        "x": "1",
+        "image": "blackholegenerator1",
+        "y": "4",
+        "level": "30",
+        "url": "/blackholegenerator"
+      },
+      "4942253": {
+        "y": "4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Water Storage Tank",
+        "url": "/waterstorage",
+        "x": "-3",
+        "image": "waterstorage9"
+      },
+      "4965699": {
+        "y": "4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Pyramid Junk Sculpture",
+        "url": "/pyramidjunksculpture",
+        "x": "-5",
+        "image": "pyramidjunksculpture1"
+      },
+      "spacejunkpark": {
+        "y": "4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Junk Park",
+        "url": "/spacething",
+        "x": "-4",
+        "image": "spacejunkpark1"
+      },
+      "arches": {
+        "y": "3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Metal Junk Arches",
+        "url": "/metal",
+        "x": "-5",
+        "image": "metaljunkarches1"
+      },
+      "henge": {
+        "y": "3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Junk Henge",
+        "url": "/junkhenge",
+        "x": "-4",
+        "image": "junkhengesculpture1"
+      },
+      "greatballofjunk": {
+        "y": "3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Great Ball of Junk",
+        "url": "/ball",
+        "x": "-3",
+        "image": "greatballofjunk1"
+      },
+      "panth": {
+        "y": "4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Panth",
+        "url": "/panth",
+        "x": "0",
+        "image": "pantheonofhagness1"
+      },
+      "temple": {
+        "y": "4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Temple",
+        "url": "/temple",
+        "x": "3",
+        "image": "templedrajilites1"
+      },
+      "4943197": {
+        "y": "2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Intelligence Ministry",
+        "url": "/intelligence",
+        "x": "1",
+        "image": "intelligence9"
+      },
+      "4979713": {
+        "y": "0",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Shield Against Weapons",
+        "url": "/saw",
+        "x": "3",
+        "image": "saw9"
+      },
+      "4944689": {
+        "y": "-1",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-5",
+        "image": "spaceport9"
+      },
+      "4943183": {
+        "y": "-1",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "0",
+        "image": "spaceport9"
+      },
+      "4979712": {
+        "y": "0",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Shield Against Weapons",
+        "url": "/saw",
+        "x": "2",
+        "image": "saw9"
+      },
+      "4944680": {
+        "y": "5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Interdimensional Rift",
+        "url": "/interdimensionalrift",
+        "x": "0",
+        "image": "interdimensionalrift1"
+      },
+      "4942254": {
+        "y": "4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Energy Reserve",
+        "url": "/energyreserve",
+        "x": "-2",
+        "image": "energy-reserve9"
+      },
+      "4944683": {
+        "y": "4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Crashed Ship Site",
+        "url": "/crashedshipsite",
+        "x": "-1",
+        "image": "crashedshipsite1"
+      },
+      "4948857": {
+        "efficiency": "100",
+        "name": "Propulsion System Factory",
+        "x": "-2",
+        "image": "propulsion9",
+        "y": "2",
+        "level": "30",
+        "url": "/propulsion"
+      },
+      "4944213": {
+        "y": "5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Archaeology Ministry",
+        "url": "/archaeology",
+        "x": "2",
+        "image": "archaeology9"
+      },
+      "4943640": {
+        "y": "5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Geo Thermal Vent",
+        "url": "/geothermalvent",
+        "x": "-2",
+        "image": "geothermalvent1"
+      },
+      "4968807": {
+        "y": "2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Entertainment District",
+        "url": "/entertainment",
+        "x": "1",
+        "image": "entertainment1"
+      },
+      "4975914": {
+        "y": "-2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-1",
+        "image": "spaceport9"
+      },
+      "4976222": {
+        "y": "-2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-3",
+        "image": "spaceport9"
+      },
+      "4948858": {
+        "efficiency": "100",
+        "name": "Pilot Training Facility",
+        "x": "-3",
+        "image": "pilottraining9",
+        "y": "2",
+        "level": "30",
+        "url": "/pilottraining"
+      },
+      "4943281": {
+        "y": "3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Observatory",
+        "url": "/observatory",
+        "x": "-2",
+        "image": "observatory9"
+      },
+      "4942247": {
+        "y": "3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "University",
+        "url": "/university",
+        "x": "3",
+        "image": "university9"
+      },
+      "4944685": {
+        "y": "-1",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-1",
+        "image": "spaceport9"
+      },
+      "4944198": {
+        "efficiency": "100",
+        "name": "Trade Ministry",
+        "x": "0",
+        "image": "trade9",
+        "y": "2",
+        "level": "30",
+        "url": "/trade"
+      },
+      "4943639": {
+        "y": "5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Natural Spring",
+        "url": "/naturalspring",
+        "x": "-3",
+        "image": "naturalspring1"
+      },
+      "4944677": {
+        "y": "5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Development Ministry",
+        "url": "/development",
+        "x": "1",
+        "image": "devel9"
+      },
+      "4979716": {
+        "y": "0",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Shield Against Weapons",
+        "url": "/saw",
+        "x": "5",
+        "image": "saw9"
+      },
+      "4979714": {
+        "y": "0",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Shield Against Weapons",
+        "url": "/saw",
+        "x": "4",
+        "image": "saw9"
+      },
+      "4943633": {
+        "y": "5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Volcano",
+        "url": "/volcano",
+        "x": "-4",
+        "image": "volcano1"
+      },
+      "4944687": {
+        "y": "-1",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-3",
+        "image": "spaceport9"
+      },
+      "4976223": {
+        "y": "-2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-4",
+        "image": "spaceport9"
+      },
+      "4944678": {
+        "y": "5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Oversight Ministry",
+        "url": "/oversight",
+        "x": "3",
+        "image": "oversight9"
+      },
+      "4944681": {
+        "y": "5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Kalavian Ruins",
+        "url": "/kalavianruins",
+        "x": "-1",
+        "image": "kalavianruins1"
+      },
+      "4942219": {
+        "y": "0",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Planetary Command Center",
+        "url": "/planetarycommand",
+        "x": "0",
+        "image": "command9"
+      },
+      "4976350": {
+        "y": "-2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-5",
+        "image": "spaceport9"
+      },
+      "4970232": {
+        "efficiency": "100",
+        "name": "Munitions Lab",
+        "x": "-4",
+        "image": "munitionslab6",
+        "y": "2",
+        "level": "30",
+        "url": "/munitionslab"
+      },
+      "4943631": {
+        "y": "5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Malcud Field",
+        "url": "/malcudfield",
+        "x": "-5",
+        "image": "malcudfield1"
+      },
+      "4970063": {
+        "efficiency": "100",
+        "name": "Espionage Ministry",
+        "x": "2",
+        "image": "espionage9",
+        "y": "2",
+        "level": "30",
+        "url": "/espionage"
+      },
+      "4968550": {
+        "efficiency": "100",
+        "name": "Cloaking Lab",
+        "x": "-5",
+        "image": "cloakinglab9",
+        "y": "2",
+        "level": "30",
+        "url": "/cloakinglab"
+      },
+      "4944686": {
+        "y": "-1",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-2",
+        "image": "spaceport9"
+      },
+      "4976221": {
+        "y": "-2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-2",
+        "image": "spaceport9"
+      },
+      "4975891": {
+        "y": "-2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "0",
+        "image": "spaceport9"
+      },
+      "4979711": {
+        "y": "0",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Shield Against Weapons",
+        "url": "/saw",
+        "x": "1",
+        "image": "saw9"
+      },
+      "saw-1": {
+        "y": "0",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Shield Against Weapons",
+        "url": "/saw",
+        "x": "-1",
+        "image": "saw9"
+      },
+      "saw-2": {
+        "y": "0",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Shield Against Weapons",
+        "url": "/saw",
+        "x": "-2",
+        "image": "saw9"
+      },
+      "saw-3": {
+        "y": "0",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Shield Against Weapons",
+        "url": "/saw",
+        "x": "-3",
+        "image": "saw9"
+      },
+      "saw-4": {
+        "y": "0",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Shield Against Weapons",
+        "url": "/saw",
+        "x": "-4",
+        "image": "saw9"
+      },
+      "saw-5": {
+        "y": "0",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Shield Against Weapons",
+        "url": "/saw",
+        "x": "-5",
+        "image": "saw9"
+      },
+      "4966153": {
+        "efficiency": "100",
+        "name": "Security Ministry",
+        "x": "3",
+        "image": "security9",
+        "y": "2",
+        "level": "30",
+        "url": "/security"
+      },
+      "ship5": {
+        "efficiency": "100",
+        "name": "Shipyard",
+        "x": "5",
+        "image": "shipyard9",
+        "y": "1",
+        "level": "30",
+        "url": "/shipyard"
+      },
+      "ship4": {
+        "efficiency": "100",
+        "name": "Shipyard",
+        "x": "4",
+        "image": "shipyard9",
+        "y": "1",
+        "level": "30",
+        "url": "/shipyard"
+      },
+      "ship3": {
+        "efficiency": "100",
+        "name": "Shipyard",
+        "x": "3",
+        "image": "shipyard9",
+        "y": "1",
+        "level": "30",
+        "url": "/shipyard"
+      },
+      "ship2": {
+        "efficiency": "100",
+        "name": "Shipyard",
+        "x": "2",
+        "image": "shipyard9",
+        "y": "1",
+        "level": "30",
+        "url": "/shipyard"
+      },
+      "ship1": {
+        "efficiency": "100",
+        "name": "Shipyard",
+        "x": "1",
+        "image": "shipyard9",
+        "y": "1",
+        "level": "30",
+        "url": "/shipyard"
+      },
+      "ship0": {
+        "efficiency": "100",
+        "name": "Shipyard",
+        "x": "0",
+        "image": "shipyard9",
+        "y": "1",
+        "level": "30",
+        "url": "/shipyard"
+      },
+      "ship-1": {
+        "efficiency": "100",
+        "name": "Shipyard",
+        "x": "-1",
+        "image": "shipyard9",
+        "y": "1",
+        "level": "30",
+        "url": "/shipyard"
+      },
+      "ship-2": {
+        "efficiency": "100",
+        "name": "Shipyard",
+        "x": "-2",
+        "image": "shipyard9",
+        "y": "1",
+        "level": "30",
+        "url": "/shipyard"
+      },
+      "ship-3": {
+        "efficiency": "100",
+        "name": "Shipyard",
+        "x": "-3",
+        "image": "shipyard9",
+        "y": "1",
+        "level": "30",
+        "url": "/shipyard"
+      },
+      "ship1-4": {
+        "efficiency": "100",
+        "name": "Shipyard",
+        "x": "-4",
+        "image": "shipyard9",
+        "y": "1",
+        "level": "30",
+        "url": "/shipyard"
+      },
+      "ship-5": {
+        "efficiency": "100",
+        "name": "Shipyard",
+        "x": "-5",
+        "image": "shipyard9",
+        "y": "1",
+        "level": "30",
+        "url": "/shipyard"
+      },
+      "4944688": {
+        "y": "-1",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-4",
+        "image": "spaceport9"
+      },
+      "4947856": {
+        "y": "4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Oracle of Anid",
+        "url": "/oracleofanid",
+        "x": "2",
+        "image": "oracleanid1"
+      },
+      "4943604": {
+        "y": "2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Subspace Transporter",
+        "url": "/transporter",
+        "x": "-1",
+        "image": "transporter9"
+      },
+
+      "port5,-1": {
+        "y": "-1",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "5",
+        "image": "spaceport9"
+      },
+      "port5,-2": {
+        "y": "-2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "5",
+        "image": "spaceport9"
+      },
+      "port5,-3": {
+        "y": "-3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "5",
+        "image": "spaceport9"
+      },
+      "port5,-4": {
+        "y": "-4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "5",
+        "image": "spaceport9"
+      },
+      "port5,-5": {
+        "y": "-5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "5",
+        "image": "spaceport9"
+      },
+
+      "port4,-1": {
+        "y": "-1",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "4",
+        "image": "spaceport9"
+      },
+      "port4,-2": {
+        "y": "-2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "4",
+        "image": "spaceport9"
+      },
+      "port4,-3": {
+        "y": "-3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "4",
+        "image": "spaceport9"
+      },
+      "port4,-4": {
+        "y": "-4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "4",
+        "image": "spaceport9"
+      },
+      "port4,-5": {
+        "y": "-5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "4",
+        "image": "spaceport9"
+      },
+
+      "port3,-1": {
+        "y": "-1",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "3",
+        "image": "spaceport9"
+      },
+      "port3,-2": {
+        "y": "-2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "3",
+        "image": "spaceport9"
+      },
+      "port3,-3": {
+        "y": "-3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "3",
+        "image": "spaceport9"
+      },
+      "port3,-4": {
+        "y": "-4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "3",
+        "image": "spaceport9"
+      },
+      "port3,-5": {
+        "y": "-5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "3",
+        "image": "spaceport9"
+      },
+
+      "port2,-1": {
+        "y": "-1",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "2",
+        "image": "spaceport9"
+      },
+      "port2,-2": {
+        "y": "-2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "2",
+        "image": "spaceport9"
+      },
+      "port2,-3": {
+        "y": "-3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "2",
+        "image": "spaceport9"
+      },
+      "port2,-4": {
+        "y": "-4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "2",
+        "image": "spaceport9"
+      },
+      "port2,-5": {
+        "y": "-5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "2",
+        "image": "spaceport9"
+      },
+
+      "port1,-1": {
+        "y": "-1",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "1",
+        "image": "spaceport9"
+      },
+      "port1,-2": {
+        "y": "-2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "1",
+        "image": "spaceport9"
+      },
+      "port1,-3": {
+        "y": "-3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "1",
+        "image": "spaceport9"
+      },
+      "port1,-4": {
+        "y": "-4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "1",
+        "image": "spaceport9"
+      },
+      "port1,-5": {
+        "y": "-5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "1",
+        "image": "spaceport9"
+      },
+
+      "port-5,-3": {
+        "y": "-3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-5",
+        "image": "spaceport9"
+      },
+      "port-4,-3": {
+        "y": "-3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-4",
+        "image": "spaceport9"
+      },
+      "port-3,-3": {
+        "y": "-3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-3",
+        "image": "spaceport9"
+      },
+      "port-2,-3": {
+        "y": "-3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-2",
+        "image": "spaceport9"
+      },
+      "port-1,-3": {
+        "y": "-3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-1",
+        "image": "spaceport9"
+      },
+      "port0,-3": {
+        "y": "-3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "0",
+        "image": "spaceport9"
+      },
+
+      "port-5,-4": {
+        "y": "-4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-5",
+        "image": "spaceport9"
+      },
+      "port-4,-4": {
+        "y": "-4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-4",
+        "image": "spaceport9"
+      },
+      "port-3,-4": {
+        "y": "-4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-3",
+        "image": "spaceport9"
+      },
+      "port-2,-4": {
+        "y": "-4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-2",
+        "image": "spaceport9"
+      },
+      "port-1,-4": {
+        "y": "-4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-1",
+        "image": "spaceport9"
+      },
+      "port0,-4": {
+        "y": "-4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "0",
+        "image": "spaceport9"
+      },
+
+      "port-5,-5": {
+        "y": "-5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-5",
+        "image": "spaceport9"
+      },
+      "port-4,-5": {
+        "y": "-5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-4",
+        "image": "spaceport9"
+      },
+      "port-3,-5": {
+        "y": "-5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-3",
+        "image": "spaceport9"
+      },
+      "port-2,-5": {
+        "y": "-5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-2",
+        "image": "spaceport9"
+      },
+      "port-1,-5": {
+        "y": "-5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "-1",
+        "image": "spaceport9"
+      },
+      "port0,-5": {
+        "y": "-5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Port",
+        "url": "/spaceport",
+        "x": "0",
+        "image": "spaceport9"
+      },
+
+      "ssla": {
+        "y": "5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Station Lab",
+        "url": "/ssl",
+        "x": "4",
+        "image": "ssla9"
+      },
+      "sslb": {
+        "y": "5",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Station Lab",
+        "url": "/ssl",
+        "x": "5",
+        "image": "sslb9"
+      },
+      "sslc": {
+        "y": "4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Station Lab",
+        "url": "/ssl",
+        "x": "5",
+        "image": "sslc9"
+      },
+      "ssld": {
+        "y": "4",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Space Station Lab",
+        "url": "/ssl",
+        "x": "4",
+        "image": "ssld9"
+      },
+
+      "intel": {
+        "y": "3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Intel Training",
+        "url": "/intel",
+        "x": "4",
+        "image": "inteltraining9"
+      },
+      "mayhem": {
+        "y": "3",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Mayhem Training",
+        "url": "/mayhem",
+        "x": "5",
+        "image": "mayhemtraining9"
+      },
+      "politics": {
+        "y": "2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Politics Training",
+        "url": "/politics",
+        "x": "4",
+        "image": "politicstraining9"
+      },
+      "theft": {
+        "y": "2",
+        "efficiency": "100",
+        "level": "30",
+        "name": "Theft Training",
+        "url": "/theft",
+        "x": "5",
+        "image": "thefttraining9"
+      },
+    };
+
+    $(document).ready(function () {
+
+      /////////////
+      // Globals //
+      /////////////
+
+      window.assetsUrl = 'http://raw.githubusercontent.com/plainblack/Lacuna-Assets/master';
+
+      ///////////
+      // Menus //
+      ///////////
+
+      // This chunk of code will center the top and bottom menus. Sadly, Semantic UI doesn't support
+      // this, so we have to use an ugly hack, instead. :/
+
+      var docWidth = $(document.body).width();
+      var padding = parseInt($('#main').css('padding-left'), 10);
+      var topWidth = $('#top-menu').width() - padding;
+      var bottomWidth = $('#bottom-menu').width() - padding;
+
+      var topLeftVal = (docWidth - topWidth) / 2;
+      var bottomLeftVal = (docWidth - bottomWidth) / 2;
+
+      $('#top-menu').css('left', topLeftVal);
+      $('#bottom-menu').css('left', bottomLeftVal);
+
+      // Activate the popups on all the menu buttons.
+      $('#top-menu a').popup({
+        variation: 'inverted'
+      });
+
+      //////////////
+      // Sidebars //
+      //////////////
+
+      $('#left-sidebar-button').click(function () {
+        $('.ui.sidebar.left').sidebar('toggle');
+      });
+
+      $('#right-sidebar-button').click(function () {
+        $('.ui.sidebar.right').sidebar('toggle');
+      });
+
+
+      ///////////////
+      // Buildings //
+      ///////////////
+
+      var buildingTmpl = _.template($('#template-building-tile').html());
+
+      var $buildingsEl = $('#buildings-draggable');
+      var range = _.range(-5, 6);
+      var size = 100;
+      var planetSize = size * 11;
+      var scrollDistance = size / 2;
+
+      _.each(range, function (x) {
+        _.each(range, function (y) {
+
+          // Find by x and y.
+          var building = _.first(_.filter(buildingsData, function (obj) {
+            return parseInt(obj.x, 10) === x && parseInt(obj.y, 10) === y;
+          }));
+
+          var obj = {
+            size: size,
+            x: x,
+            y: y,
+            empty: (building ? false : true)
+          };
+
+          _.merge(obj, building);
+          $buildingsEl.append(buildingTmpl(obj));
+
+        });
+      });
+
+      var $body = $(document.body);
+      var $draggable = $('#buildings-draggable');
+      var $container = $('#buildings-container');
+
+      var top = ($body.height() - planetSize) / 2;
+      var left = ($body.width() - planetSize) / 2;
+
+      var move = function (options) {
+
+        top += options.y || 0;
+        left += options.x || 0;
+
+        var tempTop = top + 'px';
+        var tempLeft = left + 'px';
+
+        $draggable.css({
+          top: tempTop,
+          left: tempLeft
+        });
+
+        // Move the planet background as well.
+        $container.css(
+          'background-position', [tempLeft, tempTop].join(' '));
+      };
+
+      // Center the planet view
+      move({
+        y: 0,
+        x: 0
+      });
+
+      $draggable.draggable({
+        drag: function (event, ui) {
+
+          move({
+            x: ui.position.left - left,
+            y: ui.position.top - top
+          });
+
+          // Make sure jQuery doesn't override the position that move() sets the view to.
+          ui.position.left = left;
+          ui.position.top = top;
+        }
+      });
+
+      $(window).mousewheel(function (event) {
+        move({
+          x: event.deltaX * event.deltaFactor,
+          y: event.deltaY * event.deltaFactor
+        })
+      });
+    });
+  </script>
+
+</html>

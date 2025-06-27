@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_EMAIL } from '../consts';
 import { Image } from 'astro:assets';
 import NatalieImage from '../assets/natalie-1.jpg'
 ---
@@ -48,7 +48,7 @@ import NatalieImage from '../assets/natalie-1.jpg'
       </p>
 
       <p>
-        Contact me via <a href="mailto:natalie@omg.lol">natalie@omg.lol</a>
+        Contact me via <a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>
       </p>
 
       <p class='text-center'>
@@ -70,12 +70,13 @@ import NatalieImage from '../assets/natalie-1.jpg'
       </p>
 
       <ul>
-        <li><a href='/blog'>Blog</a></li>
-        <li><a href='/fundamentals'>Fundamentals</a></li>
-        <li><a href='/now'>Now</a></li>
-        <li><a href='/recommendations'>Recommendations</a></li>
-        <li><a href='/statement-on-ai'>Statement on AI</a></li>
-        <li><a href='/timeline'>Timeline</a></li>
+        <li><a href='/blog'>Blog</a>: read the latest updates</li>
+        <li><a href='/fundamentals'>Fundamentals</a>: some quotes and ideas I find inspirational</li>
+        <li><a href='/now'>Now</a>: what I'm thinking about and doing at the moment</li>
+        <li><a href='/recommendations'>Recommendations</a>: things I would recommend to pretty much anyone</li>
+        <li><a href='/statement-on-ai'>Statement on AI</a>: thinking is hard but good</li>
+        <li><a href='/dotfiles'>Dotfiles</a>: old fashioned unix-y goodness</li>
+        <li><a href='/lacuna-ui-prototype'>Lacuna UI Prototype</a>: <i>blog post about this coming soon..</i></li>
       </ul>
     </main>
 
