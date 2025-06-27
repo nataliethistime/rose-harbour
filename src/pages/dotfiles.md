@@ -8,11 +8,17 @@ description: ''
 
 ```ini
 [alias]
-  gas = !git add -A && git status
+  ps = pull --recurse-submodules --ff-only
+  as = !git add -A && git status
+  create = !git checkout -b $1 && git push origin -u
   cam = commit -am
-  po = push origin
+  done = push origin
   s = status
-  fs = !git fetch && git status
+  recent = log --oneline -25
+  last = log -1
+  sps = "!f() { git switch $1 && git ps; }; f"
+  brrr = push origin --force --no-verify
+  sam = commit --amend --no-edit
 
 [pull]
   ff = only
