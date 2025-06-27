@@ -1,7 +1,7 @@
 ---
 title: 'Fundamentals'
 description: ''
-layout: '../layouts/BasicPage.astro'
+layout: '../layouts/MarkdownPage.astro'
 ---
 
 # Fundamentals

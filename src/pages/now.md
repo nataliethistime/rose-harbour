@@ -1,7 +1,7 @@
 ---
 title: 'Now'
 description: "What I'm doing or thinking about currently"
-layout: '../layouts/BasicPage.astro'
+layout: '../layouts/MarkdownPage.astro'
 ---
 
 # Now

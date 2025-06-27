@@ -1,7 +1,7 @@
 ---
 title: Statement on AI
 description: 'Statement on AI'
-layout: '../layouts/BasicPage.astro'
+layout: '../layouts/MarkdownPage.astro'
 ---
 
 # Statement on AI

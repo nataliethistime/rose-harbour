@@ -1,7 +1,7 @@
 ---
 title: 'Recommendations'
 description: ''
-layout: '../layouts/BasicPage.astro'
+layout: '../layouts/MarkdownPage.astro'
 ---
 
 # Recommendations
