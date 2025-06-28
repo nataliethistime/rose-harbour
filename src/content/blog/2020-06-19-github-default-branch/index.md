@@ -1,6 +1,6 @@
 ---
 title: 'GitHub Default Branch'
-description: ''
+description: 'In response to the changing of words in tech'
 pubDate: 'June 19 2020'
 heroImage: './images/cover.png'
 ---

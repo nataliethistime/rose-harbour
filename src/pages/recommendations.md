@@ -1,6 +1,6 @@
 ---
 title: 'Recommendations'
-description: ''
+description: 'Things that I think you should check out'
 layout: '../layouts/MarkdownPage.astro'
 ---
 

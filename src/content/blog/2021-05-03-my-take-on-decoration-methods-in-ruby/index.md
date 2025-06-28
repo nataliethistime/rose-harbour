@@ -1,6 +1,6 @@
 ---
 title: 'My Take on Decoration Methods in Ruby'
-description: ''
+description: 'Presenting a tiny ruby library I wrote'
 pubDate: 'May 3 2021'
 heroImage: './images/cover.png'
 ---

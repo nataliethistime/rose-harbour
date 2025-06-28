@@ -1,6 +1,6 @@
 ---
 title: 'How I Wrote and Recorded my First Song'
-description: ''
+description: 'An early foray into music production'
 pubDate: 'April 11 2018'
 heroImage: './images/cover.jpg'
 ---

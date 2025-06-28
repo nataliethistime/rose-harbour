@@ -1,6 +1,6 @@
 ---
 title: 'To Import or Perhaps Not?'
-description: ''
+description: 'An exploration of migrating a tiny amount of data'
 pubDate: 'September 23 2020'
 heroImage: './images/cover.png'
 ---

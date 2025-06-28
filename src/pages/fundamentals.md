@@ -1,6 +1,6 @@
 ---
 title: 'Fundamentals'
-description: ''
+description: 'Sharing some words and ideas that are important to me as a person'
 layout: '../layouts/MarkdownPage.astro'
 ---
 

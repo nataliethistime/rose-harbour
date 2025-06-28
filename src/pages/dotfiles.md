@@ -1,10 +1,10 @@
 ---
 layout: '../layouts/MarkdownPage.astro'
 title: 'Dotfiles'
-description: ''
+description: 'A few config files and references that I use regularly'
 ---
 
-# Git
+## Git
 
 ```ini
 [alias]
@@ -35,7 +35,7 @@ description: ''
   email = natalie@omg.lol
 ```
 
-# Vim
+## Vim
 
 ```vimscript
 " Enable syntax highlighting and force colours in the terminal

@@ -1,6 +1,6 @@
 ---
 title: 'The Myth of Isolation Productivity'
-description: ''
+description: 'Thoughts on the ultimately privileged idea that lockdown is free time'
 pubDate: 'April 18 2020'
 heroImage: './images/cover.jpg'
 ---

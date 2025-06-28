@@ -7,7 +7,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 
 const title = 'Blog';
-const description = '';
+const description = 'Listing of blog posts written by Natalie';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),

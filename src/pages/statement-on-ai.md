@@ -1,6 +1,6 @@
 ---
 title: Statement on AI
-description: 'Statement on AI'
+description: 'Spoiler: I am not a fan'
 layout: '../layouts/MarkdownPage.astro'
 ---
 
