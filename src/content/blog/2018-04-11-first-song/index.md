@@ -34,8 +34,15 @@ silly with them.
 
 I think the only important lyric is the 'public void' bit. The first real programming project I attempted was an Android
 app, using the Java programming language. All Java programs begin with something called the main function, which looks
-like the following:public class MyJavaProgram { public static void main(String\[\] args) { System.out.println("Hello,
-World"); } }
+like the following:
+
+```java
+public class MyJavaProgram {
+  public static void main(String[] args) {
+    System.out.println("Hello, World");
+  }
+}
+```
 
 See the public void in there? It's like the beginning of something new.
 

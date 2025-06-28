@@ -17,6 +17,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image = FallbackImage } = Astro.props;
 ---
 
+<!-- Start loading the web font asap -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <!-- Global Metadata -->
 <meta charset='utf-8' />
 <meta name='viewport' content='width=device-width,initial-scale=1' />
@@ -51,3 +55,7 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property='twitter:title' content={title} />
 <meta property='twitter:description' content={description} />
 <meta property='twitter:image' content={new URL(image.src, Astro.url)} />
+
+<link
+  href='https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap'
+  rel='stylesheet'>

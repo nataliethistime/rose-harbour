@@ -22,7 +22,7 @@ const posts = (await getCollection('blog')).sort(
       main {
         width: 960px;
       }
-      ul {
+      ol {
         display: flex;
         flex-wrap: wrap;
         gap: 2rem;
@@ -30,26 +30,26 @@ const posts = (await getCollection('blog')).sort(
         margin: 0;
         padding: 0;
       }
-      ul li {
+      ol li {
         width: calc(50% - 1rem);
       }
-      ul li * {
+      ol li * {
         text-decoration: none;
         transition: 0.2s ease;
       }
-      ul li:first-child {
+      ol li:first-child {
         width: 100%;
         margin-bottom: 1rem;
         text-align: center;
       }
-      ul li:first-child img {
+      ol li:first-child img {
         width: 100%;
       }
-      ul li img {
+      ol li img {
         margin-bottom: 0.5rem;
         border-radius: 12px;
       }
-      ul li a {
+      ol li a {
         display: block;
       }
       .title {
@@ -61,22 +61,22 @@ const posts = (await getCollection('blog')).sort(
         margin: 0;
         color: rgb(var(--gray));
       }
-      ul li a:hover h4,
-      ul li a:hover .date {
+      ol li a:hover h4,
+      ol li a:hover .date {
         color: rgb(var(--accent));
       }
-      ul a:hover img {
+      ol a:hover img {
         box-shadow: var(--box-shadow);
       }
       @media (max-width: 720px) {
-        ul {
+        ol {
           gap: 0.5em;
         }
-        ul li {
+        ol li {
           width: 100%;
           text-align: center;
         }
-        ul li:first-child {
+        ol li:first-child {
           margin-bottom: 0;
         }
       }
@@ -86,7 +86,7 @@ const posts = (await getCollection('blog')).sort(
     <Header />
     <main>
       <section>
-        <ul>
+        <ol>
           {
             posts.map((post) => (
               <li>
@@ -107,7 +107,7 @@ const posts = (await getCollection('blog')).sort(
               </li>
             ))
           }
-        </ul>
+        </ol>
       </section>
     </main>
     <Footer />

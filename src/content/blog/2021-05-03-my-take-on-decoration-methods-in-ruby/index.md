@@ -29,7 +29,7 @@ end
 
 And then in your view code you would use these like so:
 
-```ruby
+```erb
 <h1>List of People and Their Birthdays</h1>
 <table>
   <thead>
@@ -94,14 +94,15 @@ Join the decorator into the model:
 ```ruby
 # app/models/person.rb
 class Person < ApplicationRecord
-  # Imagine there's other model stuff in here such as relations or validation..
+  # Imagine there's other model stuff in here
+  # such as relations or validation..
   decorate_with PersonDecorator
 end
 ```
 
 And finally, you would call the `decorate` method, passing in the attribute you want to render:
 
-```ruby
+```erb
 <h1>List of People and Their Birthdays</h1>
 <table>
   <thead>
@@ -211,7 +212,8 @@ class MiniDecorator < Module
         self.public_send(property)
       else
         raise NoMethodError.new(
-          "No decorator or object method found for property: #{property}"
+          "No decorator or object method
+            found for property: #{property}"
         )
       end
     end
