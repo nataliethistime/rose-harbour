@@ -174,4 +174,6 @@ hr {
 
 .portrait img {
   width: 50%;
+  border-radius: 16px;
+  box-shadow: var(--box-shadow);
 }
