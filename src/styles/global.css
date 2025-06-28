@@ -158,7 +158,7 @@ ol li {
 
 ul li::marker {
   color: rgba(var(--gray-dark), 90%);
-  content: '🎔 ';
+  content: '♡ ';
   font-size: 0.9em;
 }
 
