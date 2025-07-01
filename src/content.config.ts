@@ -18,4 +18,19 @@ const blog = defineCollection({
     }),
 });
 
-export const collections = { blog };
+const drives = defineCollection({
+  loader: glob({ base: './src/content/drives', pattern: '**/*.{md,mdx}' }),
+
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      startAt: z.coerce.date(),
+      endAt: z.coerce.date(),
+      distanceKm: z.number(),
+      averageSpeed: z.number().optional(),
+      heroImage: image().optional(),
+    }),
+});
+
+export const collections = { blog, drives };

@@ -1,0 +1,21 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import { render } from 'astro:content';
+import DrivePage from '../../layouts/DrivePage.astro';
+
+export async function getStaticPaths() {
+  const drives = await getCollection('drives');
+  return drives.map((drives) => ({
+    params: { slug: drives.id },
+    props: drives,
+  }));
+}
+type Props = CollectionEntry<'drives'>;
+
+const drive = Astro.props;
+const { Content } = await render(drive);
+---
+
+<DrivePage {...drive.data}>
+  <Content />
+</DrivePage>

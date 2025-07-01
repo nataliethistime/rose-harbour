@@ -1,0 +1,120 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import FormattedDateTime from '../../components/FormattedDateTime.astro';
+import { Image } from 'astro:assets';
+import { formatDuration } from '../../utils';
+
+const title = 'Drives';
+const description = "Long or interesting drives I've done";
+
+const drives = (await getCollection('drives')).sort(
+  (a, b) => b.data.startAt.valueOf() - a.data.startAt.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>
+      main {
+        width: 960px;
+      }
+      ol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      ol li {
+        width: calc(50% - 1rem);
+      }
+      ol li * {
+        text-decoration: none;
+        transition: 0.2s ease;
+      }
+      ol li:first-child {
+        width: 100%;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      ol li:first-child img {
+        width: 100%;
+      }
+      ol li img {
+        margin-bottom: 0.5rem;
+        border-radius: 12px;
+      }
+      ol li a {
+        display: block;
+      }
+      .title {
+        margin: 0;
+        color: rgb(var(--black));
+        line-height: 1;
+      }
+      .info {
+        margin: 0;
+        color: rgb(var(--gray));
+        line-height: 1.5;
+      }
+      ol li a:hover h4 {
+        color: rgb(var(--accent));
+      }
+      ol a:hover img {
+        box-shadow: var(--box-shadow);
+      }
+      @media (max-width: 720px) {
+        ol {
+          gap: 0.5em;
+        }
+        ol li {
+          width: 100%;
+          text-align: center;
+        }
+        ol li:first-child {
+          margin-bottom: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <section>
+        <ol>
+          {
+            drives.map((drive) => (
+              <li>
+                <a href={`/drives/${drive.id}/`}>
+                  {drive.data.heroImage && (
+                    <Image
+                      width={720}
+                      height={360}
+                      src={drive.data.heroImage}
+                      alt='Car trip banner image'
+                    />
+                  )}
+                  <h4 class='title'>{drive.data.title}</h4>
+                </a>
+                <p class='info'>
+                  {drive.data.distanceKm} km<br />
+                  <FormattedDateTime date={drive.data.startAt} /><br />
+                  {formatDuration((drive.data.endAt.valueOf() - drive.data.startAt.valueOf()) / 1000)}
+                </p>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>
