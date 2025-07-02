@@ -137,8 +137,14 @@ a:hover {
 }
 
 p {
-  margin-bottom: 1.2em;
   text-wrap: pretty;
+}
+
+p,
+ul,
+ol,
+pre {
+  margin-bottom: 1.2em;
 }
 
 .prose :is(p, ul, ol, pre) {
@@ -206,7 +212,9 @@ blockquote {
 
 hr {
   border: none;
-  border-top: 1px solid rgb(var(--gray-light));
+  border-top: 1px solid rgba(var(--gray-dark), 20%);
+  margin: 0 auto;
+  width: 40%;
 }
 
 .sr-only {
@@ -266,5 +274,10 @@ hr {
 
   .prose {
     max-width: 100%;
+  }
+
+  hr {
+    margin: 0 auto;
+    width: 80%;
   }
 }
