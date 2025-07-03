@@ -9,9 +9,7 @@ import { Image } from 'astro:assets';
 const title = 'Blog';
 const description = 'Listing of blog posts written by Natalie';
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <!doctype html>
@@ -92,12 +90,7 @@ const posts = (await getCollection('blog')).sort(
               <li>
                 <a href={`/blog/${post.id}/`}>
                   {post.data.heroImage && (
-                    <Image
-                      width={720}
-                      height={360}
-                      src={post.data.heroImage}
-                      alt='Blog post banner image'
-                    />
+                    <Image width={720} height={360} src={post.data.heroImage} alt='Blog post banner image' />
                   )}
                   <h4 class='title'>{post.data.title}</h4>
                   <p class='date'>

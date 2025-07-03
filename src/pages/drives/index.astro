@@ -10,9 +10,7 @@ import { formatDuration } from '../../utils';
 const title = 'Drives';
 const description = "Long or interesting drives I've done";
 
-const drives = (await getCollection('drives')).sort(
-  (a, b) => b.data.startAt.valueOf() - a.data.startAt.valueOf(),
-);
+const drives = (await getCollection('drives')).sort((a, b) => b.data.startAt.valueOf() - a.data.startAt.valueOf());
 ---
 
 <!doctype html>
@@ -94,18 +92,17 @@ const drives = (await getCollection('drives')).sort(
               <li>
                 <a href={`/drives/${drive.id}/`}>
                   {drive.data.heroImage && (
-                    <Image
-                      width={720}
-                      height={360}
-                      src={drive.data.heroImage}
-                      alt='Car trip banner image'
-                    />
+                    <Image width={720} height={360} src={drive.data.heroImage} alt='Car trip banner image' />
                   )}
                   <h4 class='title'>{drive.data.title}</h4>
                 </a>
                 <p class='info'>
-                  {drive.data.distanceKm} km<br />
-                  <FormattedDateTime date={drive.data.startAt} /><br />
+                  {drive.data.distanceKm} km
+                  <br />
+                  <>
+                    <FormattedDateTime date={drive.data.startAt} />
+                    <br />
+                  </>
                   {formatDuration((drive.data.endAt.valueOf() - drive.data.startAt.valueOf()) / 1000)}
                 </p>
               </li>

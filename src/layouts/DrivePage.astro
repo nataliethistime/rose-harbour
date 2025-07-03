@@ -51,11 +51,7 @@ const { title, description, heroImage, distanceKm, startAt, endAt } = Astro.prop
     <main>
       <article>
         <div class='hero-image'>
-          {
-            heroImage && (
-              <Image width={1020} height={510} src={heroImage} alt='Car trip banner image' />
-            )
-          }
+          {heroImage && <Image width={1020} height={510} src={heroImage} alt='Car trip banner image' />}
         </div>
         <div class='prose'>
           <div class='title'>
