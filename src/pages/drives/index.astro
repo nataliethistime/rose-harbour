@@ -6,6 +6,7 @@ import { getCollection } from 'astro:content';
 import FormattedDateTime from '../../components/FormattedDateTime.astro';
 import { Image } from 'astro:assets';
 import { formatDuration } from '../../utils';
+import RssIcon from '../../components/RssIcon.astro';
 
 const title = 'Drives';
 const description = "Long or interesting drives I've done";
@@ -85,6 +86,12 @@ const drives = (await getCollection('drives')).sort((a, b) => b.data.startAt.val
     <Header />
 
     <main>
+      <p class='text-right'>
+        <a href='/rss.xml' target='_blank' title='Click to download RSS feed'>
+          <RssIcon />
+        </a>
+      </p>
+
       <section>
         <ol>
           {

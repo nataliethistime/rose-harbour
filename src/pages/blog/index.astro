@@ -5,6 +5,8 @@ import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
+import RssImage from '../../assets/rss.png';
+import RssIcon from '../../components/RssIcon.astro';
 
 const title = 'Blog';
 const description = 'Listing of blog posts written by Natalie';
@@ -82,7 +84,14 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueO
   </head>
   <body>
     <Header />
+
     <main>
+      <p class='text-right'>
+        <a href='/rss.xml' target='_blank' title='Click to download RSS feed'>
+          <RssIcon />
+        </a>
+      </p>
+
       <section>
         <ol>
           {
@@ -103,6 +112,7 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueO
         </ol>
       </section>
     </main>
+
     <Footer />
   </body>
 </html>

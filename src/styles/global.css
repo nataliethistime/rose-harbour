@@ -10,6 +10,7 @@
   --monospace-fonts: 'Inconsolata', 'Ubuntu Mono', monospace;
   --background-colour: #f6f2ec;
   --accent: #8d10f6;
+  --orange: #ffad16;
   --white: 256, 256, 256;
   --black: 15, 18, 25;
   --gray: 96, 115, 159;
@@ -244,6 +245,10 @@ hr {
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .portrait {
   text-align: center;
   margin: 2rem 0 2.5rem 0;
@@ -260,6 +265,10 @@ hr {
   max-width: calc(100% - 2em);
   margin: auto;
   color: rgb(var(--gray-dark));
+}
+
+.icon-rss {
+  color: var(--orange);
 }
 
 /* Mobile styling fixes */
