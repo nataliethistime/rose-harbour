@@ -9,7 +9,7 @@ export async function GET(context) {
     description: "Long or interesting drives I've done",
     site: context.site,
     items: drives.map((drive) => ({
-      ...drives.data,
+      ...drive.data,
       link: `/drives/${drive.id}/`,
       pubDate: drive.data.startAt,
     })),
