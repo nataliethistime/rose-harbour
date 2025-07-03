@@ -1,0 +1,35 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_REPOSITORY } from '../consts';
+
+const title = 'Feeds';
+const description = 'Listing of rss feeds that can be subscribed to';
+---
+
+<html lang='en'>
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body>
+    <Header />
+
+    <main>
+      <h1>Feeds</h1>
+
+      <ul>
+        <li><strong>Blog</strong> <a href='/rss.xml' target='_blank'>{new URL('rss.xml', Astro.site)}</a></li>
+        <li><strong>Drives</strong>: <a href='/drives.xml' target='_blank'>{new URL('drives.xml', Astro.site)}</a></li>
+      </ul>
+
+      <p>
+        I'm not sure if these should be together and use rss <code>category</code> elements or whether it's better to have
+        them separate. Feel free to <a href={SITE_REPOSITORY} target='_blank'>file an issue</a> if you have any ideas!
+      </p>
+    </main>
+
+    <Footer />
+  </body>
+</html>

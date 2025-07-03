@@ -3,11 +3,12 @@ import { Image } from 'astro:assets';
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 import TiredTGirlImage from '../assets/tired-tgirl-cropped.png';
+import { siteTitle } from '../utils';
 ---
 
 <header>
   <nav>
-    <h2><a href='/'>{SITE_TITLE}</a></h2>
+    <h2><a href='/' title={siteTitle()}>{SITE_TITLE}</a></h2>
 
     <div class='internal-links'>
       <HeaderLink href='/'>Home</HeaderLink>

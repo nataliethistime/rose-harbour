@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_EMAIL } from '../consts';
+import { SITE_DESCRIPTION, SITE_EMAIL } from '../consts';
 import { Image } from 'astro:assets';
 import NatalieImage from '../assets/natalie-1.jpg';
 ---
@@ -10,7 +10,7 @@ import NatalieImage from '../assets/natalie-1.jpg';
 <!doctype html>
 <html lang='en'>
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead description={SITE_DESCRIPTION} />
   </head>
 
   <body>
@@ -71,6 +71,7 @@ import NatalieImage from '../assets/natalie-1.jpg';
         <li><a href='/dotfiles'>Dotfiles</a>: old fashioned unix-y goodness</li>
         <li><a href='/drives'>Drives</a>: Long/interesting drives I've done due to chronic car love</li>
         <li><a href='/laws'>Laws</a>: A collection of interesting laws and anecdotes</li>
+        <li><a href='/feeds'>Feeds</a>: Feeds from this site that can be subscribed to</li>
         <li><a href='/lacuna-ui-prototype'>Lacuna UI Prototype</a>: <i>blog post about this coming soon..</i></li>
       </ul>
     </main>
