@@ -12,6 +12,14 @@ const title = 'Drives';
 const description = "Long or interesting drives I've done";
 
 const drives = (await getCollection('drives')).sort((a, b) => b.data.startAt.valueOf() - a.data.startAt.valueOf());
+
+const stats = {
+  totalDistance: [...drives].reduce((sum, drive) => sum + drive.data.distanceKm, 0),
+  longestDrive: [...drives].sort((a, b) => b.data.distanceKm - a.data.distanceKm)[0],
+
+  // Ideas:
+  // - Breakdown by year or month or vehicle
+};
 ---
 
 <!doctype html>
@@ -87,17 +95,25 @@ const drives = (await getCollection('drives')).sort((a, b) => b.data.startAt.val
 
     <main>
       <p class='text-right'>
-        <a href='/rss.xml' target='_blank' title='Click to download RSS feed'>
+        <a href='/drives.xml' target='_blank' title='Click to download RSS feed'>
           <RssIcon />
         </a>
       </p>
+
+      <!--
+      <p>
+        Total distance: {stats.totalDistance} km<br />
+        Longest drive: <a href={`/drives/${stats.longestDrive.id}`}>{stats.longestDrive.data.title}</a>
+        {stats.longestDrive.data.distanceKm} km
+      </p>
+      -->
 
       <section>
         <ol>
           {
             drives.map((drive) => (
               <li>
-                <a href={`/drives/${drive.id}/`}>
+                <a href={`/drives/${drive.id}`}>
                   {drive.data.heroImage && (
                     <Image width={720} height={360} src={drive.data.heroImage} alt='Car trip banner image' />
                   )}
