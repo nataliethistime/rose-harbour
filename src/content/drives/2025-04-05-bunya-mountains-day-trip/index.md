@@ -6,3 +6,5 @@ endAt: 2025-04-04T21:16:00.000Z
 distanceKm: 775
 heroImage: ./cover.jpg
 ---
+
+Needed to clear my head. The scenery was gorgeous and I had a great time but the distance was perhaps slightly long.

@@ -6,3 +6,5 @@ endAt: 2025-05-17T15:48:00.000Z
 distanceKm: 900
 heroImage: ./cover.jpg
 ---
+
+Driving my parents to Sydney!
