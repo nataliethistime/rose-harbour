@@ -6,6 +6,16 @@ layout: '../layouts/MarkdownPage.astro'
 
 # Now
 
+## July 2025
+
+Been tinkering with some music ideas and playing with building a homelab setup for backups.
+
+Due to an adhd med change gone awry, I've otherwise not done much outside of work and sleep.
+
+📺 [The West Wing](https://www.imdb.com/title/tt0200276)
+
+🎥 [Black Dynamite](https://www.imdb.com/title/tt1190536)
+
 ## June 2025
 
 Still finding my feet after a very chaotic start to the year. Moved into my own apartment three months ago and have just
