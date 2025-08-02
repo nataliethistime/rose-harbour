@@ -5,9 +5,9 @@ import DrivePage from '../../layouts/DrivePage.astro';
 
 export async function getStaticPaths() {
   const drives = await getCollection('drives');
-  return drives.map((drives) => ({
-    params: { slug: drives.id },
-    props: drives,
+  return drives.map((drive) => ({
+    params: { slug: drive.id },
+    props: drive,
   }));
 }
 type Props = CollectionEntry<'drives'>;

@@ -33,4 +33,14 @@ const drives = defineCollection({
     }),
 });
 
-export const collections = { blog, drives };
+const kb = defineCollection({
+  loader: glob({ base: './src/content/kb', pattern: '**/*.{md,mdx}' }),
+
+  schema: () =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+    }),
+});
+
+export const collections = { blog, drives, kb };

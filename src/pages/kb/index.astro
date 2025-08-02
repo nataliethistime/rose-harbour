@@ -1,0 +1,65 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const title = 'Knowledge Base';
+const description = 'A public wiki of sorts';
+
+const kb = await getCollection('kb');
+
+const categories: Record<string, typeof kb> = {};
+
+kb.forEach((article) => {
+  const category = article.id.split('/')[0] ?? 'Uncategorised';
+  if (categories[category]) {
+    categories[category].push(article);
+  } else {
+    categories[category] = [article];
+  }
+});
+
+const displayCategories: Record<string, string> = {
+  css: 'CSS',
+  javascript: 'JavaScript',
+};
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body>
+    <Header />
+
+    <main>
+      <h1>Knowledge Base</h1>
+
+      {
+        Object.keys(categories)
+          .sort()
+          .map((category) => (
+            <section>
+              <p>
+                <strong>{displayCategories[category]}</strong>
+              </p>
+              <ul>
+                {categories[category]
+                  .sort((a, b) => a.data.title.localeCompare(b.data.title))
+                  .map((article) => (
+                    <li>
+                      <a href={`/kb/${article.id}`}>{article.data.title}</a>: {article.data.description}
+                    </li>
+                  ))}
+              </ul>
+            </section>
+          ))
+      }
+    </main>
+
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,21 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import { render } from 'astro:content';
+import MarkdownPage from '../../layouts/MarkdownPage.astro';
+
+export async function getStaticPaths() {
+  const kb = await getCollection('kb');
+  return kb.map((article) => ({
+    params: { slug: article.id },
+    props: article,
+  }));
+}
+type Props = CollectionEntry<'kb'>;
+
+const kb = Astro.props;
+const { Content } = await render(kb);
+---
+
+<MarkdownPage frontmatter={{ title: kb.data.title, description: kb.data.description }}>
+  <Content />
+</MarkdownPage>
