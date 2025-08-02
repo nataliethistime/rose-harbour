@@ -29,6 +29,11 @@
   margin: 0;
 }
 
+/* Add margin before content when scrolling to anchor links */
+:target {
+  scroll-margin-block-start: 1em;
+}
+
 body {
   font-family: 'Source Serif 4', 'Times New Roman', var(--system-fonts);
   margin: 0;
@@ -64,14 +69,19 @@ h3,
 h4,
 h5,
 h6,
-/* Exception for the "Rose Harbour" nav bar link */
-:is(h2) a {
+:is(h1, h2, h3, h4, h5, h6) a {
   margin: 0 0 0.8rem 0;
   color: rgb(var(--black));
   line-height: 1.2;
   font-weight: 300;
   font-style: italic;
   text-wrap: balance;
+  text-decoration: none;
+}
+
+:is(h1, h2, h3, h4, h5, h6) a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1%;
 }
 
 h1 {

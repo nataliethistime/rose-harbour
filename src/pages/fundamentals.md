@@ -12,6 +12,8 @@ I've done my best! I hope it inspires you 💕
 
 ---
 
+## Contents
+
 ## To Begin
 
 "It is not the critic who counts; not the man who points out how the strong one stumbles, or where the doer of deeds

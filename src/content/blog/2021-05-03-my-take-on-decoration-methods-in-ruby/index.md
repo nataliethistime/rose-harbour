@@ -5,13 +5,19 @@ pubDate: 'May 3 2021'
 heroImage: './images/cover.png'
 ---
 
+## Contents
+
+## Introduction
+
 One of the fundamentals of computing is that the way that information is presented on the screen is different to the way
 that it is stored or processed. Today's date, for instance, could be stored as a number (`1620000000`) or as a string
 (`2021-05-03 00:00:00 +0000`) or really any format. There will always be multiple different ways of storing information
 and this is fine. The challenge I want to talk about today though is organising the code for rendering this information
 in Ruby on Rails applications.
 
-The "Rails Way" of doing this is with helper methods.
+## The "Rails Way"
+
+Traditionally, this would be done with helper methods.
 
 For example you might have a set of helpers defined as below:
 

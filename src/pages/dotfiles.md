@@ -4,6 +4,10 @@ title: 'Dotfiles'
 description: 'A few config files and references that I use regularly'
 ---
 
+# Dotfiles
+
+## Contents
+
 ## Git
 
 ```ini

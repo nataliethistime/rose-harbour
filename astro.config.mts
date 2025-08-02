@@ -1,6 +1,11 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import remarkToc from 'remark-toc';
+import rehypeSlug from 'rehype-slug';
+import type { RehypePlugin } from '@astrojs/markdown-remark';
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,6 +24,13 @@ export default defineConfig({
   },
 
   markdown: {
+    remarkPlugins: [remarkToc],
+    rehypePlugins: [
+      // TODO: not sure why this TS teething issue is happening
+      rehypeAccessibleEmojis as RehypePlugin,
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+    ],
     shikiConfig: {
       themes: {
         light: 'solarized-light',
