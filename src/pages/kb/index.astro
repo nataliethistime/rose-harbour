@@ -12,7 +12,7 @@ const kb = await getCollection('kb');
 const categories: Record<string, typeof kb> = {};
 
 kb.forEach((article) => {
-  const category = article.id.split('/')[0] ?? 'Uncategorised';
+  const category = article.id.split('/')[0] ?? 'none';
   if (categories[category]) {
     categories[category].push(article);
   } else {
@@ -23,6 +23,16 @@ kb.forEach((article) => {
 const displayCategories: Record<string, string> = {
   css: 'CSS',
   javascript: 'JavaScript',
+  none: 'Uncategorised',
+};
+
+const formatCategoryHeading = (category: string) => {
+  if (displayCategories[category]) {
+    return displayCategories[category];
+  } else {
+    const str = category.replaceAll('-', ' ');
+    return `${str.charAt(0).toLocaleUpperCase()}${str.slice(1)}`;
+  }
 };
 ---
 
@@ -44,7 +54,7 @@ const displayCategories: Record<string, string> = {
           .map((category) => (
             <section>
               <p>
-                <strong>{displayCategories[category]}</strong>
+                <strong>{formatCategoryHeading(category)}</strong>
               </p>
               <ul>
                 {categories[category]
