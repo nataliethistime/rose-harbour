@@ -50,6 +50,12 @@ Never loan something to someone if you're not okay with it being destroyed by th
 
 "If the world made sense, we'd all have nothing to talk about" - My Mum
 
+"It's not the note you play that's the wrong note - it's the note you play afterwards that makes it right or wrong." -
+Miles Davis
+
+"Anybody can play. The note is only 20 percent. The attitude of the motherfucker who plays it is 80 percent." - Miles
+Davis
+
 ## Motivation
 
 The expert has failed more times than the beginner has tried.
