@@ -6,6 +6,14 @@ layout: '../layouts/MarkdownPage.astro'
 
 # Now
 
+## August 2025
+
+Extended very bad mental health time. Kept myself distracted by finishing
+[The West Wing](https://www.imdb.com/title/tt0200276) and revisiting some films I haven't seen since they came out such
+as [The Batman](https://www.imdb.com/title/tt1877830) and [Oppenheimer](https://www.imdb.com/title/tt15398776).
+
+🎶 [Straight Line Was A Lie](https://open.spotify.com/album/5XbVk30ifqaiI6EiVVjA1p) by The Beths
+
 ## July 2025
 
 Been tinkering with some music ideas and playing with building a homelab setup for backups.
