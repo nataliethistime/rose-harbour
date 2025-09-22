@@ -1,0 +1,135 @@
+---
+title: Drives
+description: Long or interesting drives I've done
+eleventyImport:
+  collections: ['drive']
+---
+
+<%
+
+const drives = collections.myDrives;
+
+const stats = {
+  totalDistance: [...drives].reduce((sum, drive) => sum + drive.data.distanceKm, 0),
+  longestDrive: [...drives].sort((a, b) => b.data.distanceKm - a.data.distanceKm)[0],
+
+  // Ideas:
+  // - Breakdown by year or month or vehicle
+};
+
+%>
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <%- include('/base-head.ejs') %>
+    <style>
+      main {
+        width: 960px;
+      }
+      ol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      ol li {
+        width: calc(50% - 1rem);
+        margin: 0;
+        padding: 0;
+      }
+      ol li * {
+        text-decoration: none;
+        transition: 0.2s ease;
+      }
+      ol li:first-child {
+        width: 100%;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      ol li:first-child img {
+        width: 100%;
+      }
+      ol li img {
+        margin-bottom: 0.5rem;
+        border-radius: 12px;
+      }
+      ol li a {
+        display: block;
+      }
+      .title {
+        margin: 0;
+        color: rgb(var(--black));
+        line-height: 1;
+      }
+      .info {
+        margin: 0;
+        color: rgb(var(--gray));
+        line-height: 1.5;
+      }
+      ol li a:hover h4 {
+        color: rgb(var(--accent));
+      }
+      ol a:hover img {
+        box-shadow: var(--box-shadow);
+      }
+      @media (max-width: 720px) {
+        ol {
+          gap: 0.5em;
+        }
+        ol li {
+          width: 100%;
+          text-align: center;
+        }
+        ol li:first-child {
+          margin-bottom: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('/header.ejs') %>
+
+    <main>
+      <p class='text-right'>
+        <a href='/drives.xml' target='_blank' title='Click to download RSS feed'>
+          <%- include('/rss-icon.ejs') %>
+        </a>
+      </p>
+
+      <!--
+      <p>
+        Total distance: {stats.totalDistance} km<br />
+        Longest drive: <a href={`/drives/${stats.longestDrive.id}`}>{stats.longestDrive.data.title}</a>
+        {stats.longestDrive.data.distanceKm} km
+      </p>
+      -->
+
+      <section>
+        <ol>
+          <% drives.map((drive) => { %>
+            <li>
+              <a href='<%= drive.url %>'>
+                <% if (drive.data.heroImage) { %>
+                  <img width=720 height=360 src='<%= drive.data.heroImage %>' alt='Car trip banner image' />
+                <% } %>
+                <h4 class='title'><%= drive.data.title %></h4>
+              </a>
+              <p class='info'>
+                <%= drive.data.distanceKm %> km
+                <br />
+                <%- include('/formatted-datetime.ejs', { date: drive.data.startAt }) %>
+                <br />
+                <%= include('/formatted-duration', { duration: (drive.data.endAt.valueOf() - drive.data.startAt.valueOf()) / 1000 }) %>
+              </p>
+            </li>
+          <% }) %>
+        </ol>
+      </section>
+    </main>
+
+    <% include('/footer.ejs') %>
+  </body>
+</html>

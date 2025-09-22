@@ -12,26 +12,25 @@
     "npm": ">= 10"
   },
   "scripts": {
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
+    "start": "eleventy --serve",
+    "build": "eleventy",
     "lint": "prettier . --write",
     "lint:check": "prettier . --check"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.3",
-    "@astrojs/rss": "^4.0.12",
-    "@astrojs/sitemap": "^3.4.2",
-    "astro": "^5.12.8",
-    "rehype-accessible-emojis": "^0.3.2",
-    "rehype-autolink-headings": "^7.1.0",
-    "rehype-slug": "^6.0.0",
-    "remark-toc": "^9.0.0",
-    "sharp": "^0.34.3"
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-img": "^6.0.4",
+    "@11ty/eleventy-plugin-ejs": "^1.0.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "@sindresorhus/slugify": "^3.0.0",
+    "install": "^0.13.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-toc-done-right": "^4.2.0",
+    "prism-themes": "^1.9.0"
   },
   "devDependencies": {
-    "prettier": "^3.6.2",
-    "prettier-plugin-astro": "^0.14.1"
+    "prettier": "^3.6.2"
   }
 }

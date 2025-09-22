@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <%- include('/base-head.ejs') %>
+
+    <style>
+      .hero-image {
+        width: 100%;
+      }
+
+      .hero-image img {
+        display: block;
+        margin: 0 auto;
+        border-radius: 12px;
+        box-shadow: var(--box-shadow);
+      }
+
+      .title {
+        margin-bottom: 1em;
+        padding: 1em 0;
+        text-align: center;
+        line-height: 1;
+      }
+
+      .title h1 {
+        margin: 0 0 0.5em 0;
+      }
+
+      .date {
+        margin-bottom: 0.5em;
+        color: rgb(var(--gray));
+      }
+
+      .last-updated-on {
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <%- include('/header.ejs') %>
+
+    <main>
+      <article>
+        <div class='hero-image'>
+          <% if (heroImage) { %>
+            <img width=1020 height=510 src='<%= heroImage %>' alt='Blog post banner image' />
+          <% } %>
+        </div>
+
+        <div class='prose'>
+          <div class='title'>
+            <div class='date'>
+              <%- include('/formatted-date.ejs', { date }) %>
+
+              <% if (locals.updatedDate) { %>
+                  <div class='last-updated-on'>
+                    Last updated on <%- include('/formatted-date.ejs', { date: updatedDate }) %>
+                  </div>
+              <% } %>
+            </div>
+
+            <h1><%= title %></h1>
+            <hr />
+          </div>
+
+          <%- content %>
+        </div>
+      </article>
+    </main>
+
+    <% include('/footer.ejs') %>
+  </body>
+</html>

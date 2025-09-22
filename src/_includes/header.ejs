@@ -1,0 +1,14 @@
+<header>
+  <nav>
+    <h2><a href='/' title='<%= meta.siteTitle %>'><%= meta.siteTitle %></a></h2>
+
+    <div class='internal-links'>
+      <%- include('/header-link.ejs', { href: '/', name: 'Home' }) %>
+      <%- include('/header-link.ejs', { href: '/blog/', name: 'Blog' }) %>
+    </div>
+
+    <div class='profile'>
+      <img src='/_images/tired-tgirl-cropped.png' alt='Handrawn Natalie art' />
+    </div>
+  </nav>
+</header>

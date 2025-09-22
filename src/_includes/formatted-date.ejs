@@ -1,0 +1,10 @@
+<time datetime='<%= date.toISOString() %>'>
+  <%=
+    date.toLocaleDateString('en-us', {
+      timeZone: 'UTC',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  %>
+</time>

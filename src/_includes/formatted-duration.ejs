@@ -1,0 +1,8 @@
+<%
+
+const hours = Math.floor(duration / 60 / 60);
+const minutes = (duration / 60) % 60;
+
+%>
+
+<%= `${hours} ${hours === 1 ? 'hour' : 'hours'} and ${minutes} ${minutes === 1 ? 'minute' : 'minutes'}` %>

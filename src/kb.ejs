@@ -1,0 +1,30 @@
+---
+title: Knowledge Base
+description: A public wiki of sorts
+layout: page.ejs
+---
+
+<% const kb = collections.kb; const categories = {}; kb.forEach((article) => { // Example url: /kb/css/css-resset const
+category = article.url.split('/')[2] ?? 'none'; if (categories[category]) { categories[category].push(article); } else {
+categories[category] = [article]; } }); const displayCategories = { css: 'CSS', javascript: 'JavaScript', none:
+'Uncategorised', }; const formatCategoryHeading = (category) => { if (displayCategories[category]) { return
+displayCategories[category]; } else { const str = category.replaceAll('-', ' '); return
+`${str.charAt(0).toLocaleUpperCase()}${str.slice(1)}`; } }; %>
+
+<h1>Knowledge Base</h1>
+
+<% Object.keys(categories).sort().map((category) => { %>
+<section>
+  <p>
+    <strong><%= formatCategoryHeading(category) %></strong>
+  </p>
+  <ul>
+    <% categories[category].sort((a, b) => a.data.title.localeCompare(b.data.title)).map((article) => { %>
+    <li>
+      <a href="<%= article.url %>"><%= article.data.title %></a>:
+      <%= article.data.description %>
+    </li>
+    <% }) %>
+  </ul>
+</section>
+<% }) %>

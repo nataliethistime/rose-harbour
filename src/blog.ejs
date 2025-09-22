@@ -1,0 +1,109 @@
+---
+title: Blog
+description: Listing of blog posts written by Natalie
+eleventyImport:
+  collections: ['post']
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <%- include('/base-head.ejs') %>
+    <style>
+      main {
+        width: 960px;
+      }
+      ol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      ol li {
+        width: calc(50% - 1rem);
+        margin: 0;
+        padding: 0;
+      }
+      ol li * {
+        text-decoration: none;
+        transition: 0.2s ease;
+      }
+      ol li:first-child {
+        width: 100%;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      ol li:first-child img {
+        width: 100%;
+      }
+      ol li img {
+        margin-bottom: 0.5rem;
+        border-radius: 12px;
+      }
+      ol li a {
+        display: block;
+      }
+      .title {
+        margin: 0;
+        color: rgb(var(--black));
+        line-height: 1;
+      }
+      .date {
+        margin: 0;
+        color: rgb(var(--gray));
+      }
+      ol li a:hover h4,
+      ol li a:hover .date {
+        color: rgb(var(--accent));
+      }
+      ol a:hover img {
+        box-shadow: var(--box-shadow);
+      }
+      @media (max-width: 720px) {
+        ol {
+          gap: 0.5em;
+        }
+        ol li {
+          width: 100%;
+          text-align: center;
+        }
+        ol li:first-child {
+          margin-bottom: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('/header.ejs') %>
+
+    <main>
+      <p class='text-right'>
+        <a href='/rss.xml' target='_blank' title='Click to download RSS feed'>
+          <%- include('/rss-icon.ejs') %>
+        </a>
+      </p>
+
+      <section>
+        <ol>
+          <% for (const post of collections.myPosts) { %>
+            <li>
+              <a href='<%= post.url %>'>
+                <% if (post.data.heroImage) { %>
+                  <img width=720 height=360 src='<%= post.data.heroImage %>' alt='Blog post banner image' />
+                <% } %>
+                <h4 class='title'><%= post.data.title %></h4>
+                <p class='date'>
+                  <%- include('/formatted-date.ejs', { date: post.data.date }) %>
+                </p>
+              </a>
+            </li>
+          <% } %>
+        </ol>
+      </section>
+    </main>
+
+    <%- include('/footer.ejs') %>
+  </body>
+</html>
