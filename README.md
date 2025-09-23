@@ -1,4 +1,4 @@
-[![Natalie handrawn banner image](./src/_images/tired-tgirl-records.png)](https://nataliethistime.com)
+[![Natalie handrawn banner image](https://raw.githubusercontent.com/nataliethistime/rose-harbour/refs/heads/main/src/_images/tired-tgirl-records.png)](https://nataliethistime.com)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/74cf76ae-d0b6-4b0f-bbdc-f6457ae5bba3/deploy-status)](https://app.netlify.com/projects/rose-harbour/deploys)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/nataliethistime/rose-harbour/main)
