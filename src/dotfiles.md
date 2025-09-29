@@ -251,13 +251,13 @@ nnoremap J }
 nnoremap K {
 
 " jk is escape
-inoremap jk <esc>
+inoremap jk \<esc\>
 
 " Use a instead of A to insert at the end of the line
 nnoremap a A
 
 " Use s instead of :w to save
-nnoremap s :update<cr>
+nnoremap s :update\<cr\>
 
 " Keep more lines around the cursor visible on the screen
 set scrolloff=5
