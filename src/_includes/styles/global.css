@@ -8,13 +8,16 @@
   --system-fonts:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   --monospace-fonts: 'Inconsolata', 'Ubuntu Mono', monospace;
-  --background-colour: #f6f2ec;
-  --accent: #8d10f6;
+  --main-colour: rgb(var(--black));
+  --main-colour-body: rgb(var(--gray-dark));
+  --background-colour: #ffdef8;
+  --accent: #86016a;
   --orange: #ffad16;
   --white: 256, 256, 256;
   --black: 15, 18, 25;
   --gray: 96, 115, 159;
-  --gray-light: 236, 236, 236;
+  --gray: 98, 47, 106;
+  --gray-light: 246, 246, 246;
   --gray-dark: 34, 41, 57;
   --box-shadow: 0 2px 6px rgba(var(--gray), 2%), 0 8px 24px rgba(var(--gray), 6%), 0 16px 32px rgba(var(--gray), 8%);
 }
@@ -31,7 +34,7 @@ body {
   background-size: 100% 600px;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  color: rgb(var(--gray-dark));
+  color: var(--main-colour-body);
   font-size: 20px;
   color-scheme: light dark;
   -webkit-font-smoothing: antialiased;
@@ -58,7 +61,7 @@ h5,
 h6,
 :is(h1, h2, h3, h4, h5, h6) a {
   margin: 0 0 0.8rem 0;
-  color: rgb(var(--black));
+  color: var(--main-colour);
   line-height: 1.2;
   font-weight: 300;
   font-style: italic;
@@ -151,15 +154,14 @@ p {
 p,
 ul,
 ol,
-pre,
-pre[class*='language-'] {
-  margin-top: 0;
-  margin-bottom: 1.2em;
+pre {
+  margin-top: 0 !important;
+  margin-bottom: 1.2em !important;
 }
 
-.prose :is(p, ul, ol, pre, pre[class*='language-']) {
-  margin-top: 0;
-  margin-bottom: 2em;
+.prose :is(p, ul, ol, pre) {
+  margin-top: 0 !important;
+  margin-bottom: 2em !important;
 }
 
 ul li,

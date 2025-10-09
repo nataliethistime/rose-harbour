@@ -24,7 +24,7 @@ header {
       a {
         display: inline-block;
         padding: 1em 0.5em;
-        color: var(--black);
+        color: var(--main-colour);
         border-bottom: 4px solid transparent;
         text-decoration: none;
       }

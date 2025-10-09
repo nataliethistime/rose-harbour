@@ -1,6 +1,6 @@
 footer {
   padding: 2em 1em 6em 1em;
-  background: rgba(var(--gray-light), 80%) no-repeat;
+  background: rgba(var(--white), 40%);
   color: rgb(var(--gray));
   text-align: center;
 }
