@@ -41,9 +41,7 @@ const formatCategoryHeading = (category) => {
 
 <% Object.keys(categories).sort().map((category) => { %>
 <section>
-  <p>
-    <strong><%= formatCategoryHeading(category) %></strong>
-  </p>
+  <h2><%= formatCategoryHeading(category) %></h2>
   <ul>
     <% categories[category].sort((a, b) => a.data.title.localeCompare(b.data.title)).map((article) => { %>
     <li>
