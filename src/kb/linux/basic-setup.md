@@ -1,3 +1,10 @@
+---
+title: Basic Setup
+description: Quick Ubuntu setup reference
+layout: page.ejs
+tags: kb
+---
+
 # Basic Setup
 
 Stuff that I always have to look up when setting up a new Ubuntu server. Your mileage may vary depending on your use

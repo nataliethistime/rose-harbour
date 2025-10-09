@@ -8,7 +8,7 @@ layout: page.ejs
 
 ## Contents
 
-${toc}
+[[toc]]
 
 ## Git
 

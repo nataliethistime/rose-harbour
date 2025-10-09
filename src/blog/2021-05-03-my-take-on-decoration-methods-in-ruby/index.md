@@ -9,7 +9,7 @@ layout: post.ejs
 
 ## Contents
 
-${toc}
+[[toc]]
 
 ## Introduction
 
@@ -204,7 +204,7 @@ end
 The implementation of `mini_decorator` currently doesn't use any Rails-specific trickery, so you're perfectly safe using
 this library in non-Rails apps.
 
-## Implemantion Details
+## Implementation Details
 
 `mini_decorator` is actually only a few lines of Ruby code. You can see the whole mess below.
 

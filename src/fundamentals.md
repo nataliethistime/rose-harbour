@@ -14,7 +14,7 @@ I've done my best! I hope it inspires you 💕
 
 ## Contents
 
-${toc}
+[[toc]]
 
 ## To Begin
 

@@ -39,7 +39,7 @@ body {
 
 pre,
 code {
-  font-family: var(--monospace-fonts);
+  font-family: var(--monospace-fonts) !important;
 }
 
 main {
@@ -151,11 +151,14 @@ p {
 p,
 ul,
 ol,
-pre {
+pre,
+pre[class*='language-'] {
+  margin-top: 0;
   margin-bottom: 1.2em;
 }
 
-.prose :is(p, ul, ol, pre) {
+.prose :is(p, ul, ol, pre, pre[class*='language-']) {
+  margin-top: 0;
   margin-bottom: 2em;
 }
 
@@ -197,7 +200,7 @@ code {
 }
 
 pre {
-  padding: 1.5em;
+  padding: 1.5em !important; /* TODO: conflict with more specific padding style from prism */
   border-radius: 8px;
 }
 
