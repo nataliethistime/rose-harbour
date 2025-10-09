@@ -36,7 +36,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyImageTransformPlugin);
   eleventyConfig.addPlugin(syntaxHighlight);
 
-  eleventyConfig.addPassthroughCopy('public/');
+  eleventyConfig.addPassthroughCopy('src/public/');
 
   eleventyConfig.setServerOptions({
     port: 3000,
