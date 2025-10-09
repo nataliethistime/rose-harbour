@@ -31,12 +31,13 @@ Contact me via [<%= meta.email %>](mailto:<%= meta.email %>)
 
 Musically, I play bass in the band <a href='https://www.youtube.com/watch?v=lhxJcr4g4WI' target='_blank'>Diaspora the
 Explorer</a>, with some other projects in the works. Occasionally I upload tunes to my
-<a href='https://www.youtube.com/watch?v=5NbKaZNvsHI' target='_blank'>YouTube channel</a>.
+<a href='https://www.youtube.com/watch?v=KcfNfZ0M-UU' target='_blank'>YouTube channel</a>.
 
 ## Sitemap
 
 Links for navigating around this website
 
+- [Knowledge Base](/kb): a collection of _Today I Learned_-type snippets
 - [Blog](/blog): read the latest updates
 - [Fundamentals](/fundamentals): some quotes and ideas I find inspirational
 - [Now](/now): what I'm thinking about and doing at the moment
