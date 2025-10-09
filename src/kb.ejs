@@ -4,12 +4,38 @@ description: A public wiki of sorts
 layout: page.ejs
 ---
 
-<% const kb = collections.kb; const categories = {}; kb.forEach((article) => { // Example url: /kb/css/css-resset const
-category = article.url.split('/')[2] ?? 'none'; if (categories[category]) { categories[category].push(article); } else {
-categories[category] = [article]; } }); const displayCategories = { css: 'CSS', javascript: 'JavaScript', none:
-'Uncategorised', }; const formatCategoryHeading = (category) => { if (displayCategories[category]) { return
-displayCategories[category]; } else { const str = category.replaceAll('-', ' '); return
-`${str.charAt(0).toLocaleUpperCase()}${str.slice(1)}`; } }; %>
+<%
+
+const kb = collections.kb;
+const categories = {};
+
+kb.forEach((article) => {
+  // Example url: /kb/css/css-resset
+  const category = article.url.split('/')[2] ?? 'none';
+
+  if (categories[category]) {
+    categories[category].push(article);
+  } else {
+    categories[category] = [article];
+  }
+});
+
+const displayCategories = {
+  css: 'CSS',
+  javascript: 'JavaScript',
+  none: 'Uncategorised',
+};
+
+const formatCategoryHeading = (category) => {
+  if (displayCategories[category]) {
+    return displayCategories[category];
+  } else {
+    const str = category.replaceAll('-', ' ');
+    return `${str.charAt(0).toLocaleUpperCase()}${str.slice(1)}`;
+  }
+};
+
+%>
 
 <h1>Knowledge Base</h1>
 
