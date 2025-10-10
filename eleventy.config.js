@@ -37,6 +37,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.addPassthroughCopy('src/public/');
+  eleventyConfig.addPassthroughCopy('src/music/**/*.mp3', { mode: 'html-relative' });
 
   eleventyConfig.setServerOptions({
     port: 3000,

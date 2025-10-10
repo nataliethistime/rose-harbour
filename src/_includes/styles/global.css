@@ -133,7 +133,9 @@ li,
 header,
 footer,
 code,
-pre {
+pre,
+figure,
+figcaption {
   font-weight: 300;
 }
 
@@ -154,7 +156,9 @@ p {
 p,
 ul,
 ol,
-pre {
+pre,
+figure,
+figcaption {
   margin-top: 0 !important;
   margin-bottom: 1.2em !important;
 }
@@ -223,6 +227,11 @@ hr {
   border-top: 1px solid rgba(var(--gray-dark), 20%);
   margin: 0 auto;
   width: 40%;
+}
+
+audio {
+  width: 100%;
+  padding: 0 1em;
 }
 
 .sr-only {

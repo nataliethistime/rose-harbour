@@ -39,6 +39,7 @@ Links for navigating around this website
 
 - [Knowledge Base](/kb): a collection of _Today I Learned_-type snippets
 - [Blog](/blog): read the latest updates
+- [Music](/music): obligatory art on the personal website slay moment
 - [Fundamentals](/fundamentals): some quotes and ideas I find inspirational
 - [Now](/now): what I'm thinking about and doing at the moment
 - [Recommendations](/recommendations): things I would recommend to pretty much anyone
