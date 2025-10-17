@@ -154,12 +154,14 @@ p {
 p,
 ul,
 ol,
-pre {
+pre,
+br,
+hr {
   margin-top: 0 !important;
   margin-bottom: 1.2em !important;
 }
 
-.prose :is(p, ul, ol, pre) {
+.prose :is(p, ul, ol, pre, br, hr) {
   margin-top: 0 !important;
   margin-bottom: 2em !important;
 }
