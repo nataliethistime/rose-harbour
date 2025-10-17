@@ -6,6 +6,30 @@ layout: page.ejs
 
 # Now
 
+## September 2025
+
+Still really struggling with mental health but starting to round the curve a little. Painted my garage and saw friends
+more which was lovely. Spent a bunch of time learning [Gleam](https://gleam.run/) and working on my Homelab (publishing
+docker images on a private [Gitea](https://about.gitea.com/) package registry and setting up some new infra).
+
+Ordinarily, when having a really rough time, I stop really listening to music. I think once I'm in that space I start
+feeling like nothing is good or fun and it just doesn't resonate. This month was a huge contrast to that though wherein
+I spent a lot of time listening to three whole albums that were new to me.
+
+🎶 Check out my [September 2025](https://open.spotify.com/playlist/1GPbfca6OJbUmxiQoWub0W) Spotify playlist
+
+I also had friends over at my place a few times to watch movies as well as getting to the cinema to catch The Long Walk.
+
+🎥 Three favourite films this month: [Death Becomes Her](https://www.imdb.com/title/tt0104070),
+[Everything Everywhere All at Once](https://www.imdb.com/title/tt6710474), and
+[The Long Walk](https://www.imdb.com/title/tt10374610)
+
+Overall I've found this year very tough.. and the end isn't in sight yet.
+
+But it's getting better.
+
+Slowly.
+
 ## August 2025
 
 Extended very bad mental health time. Kept myself distracted by finishing
