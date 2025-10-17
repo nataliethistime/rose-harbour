@@ -34,7 +34,7 @@
 <meta name='theme-color' content='#ffffff' />
 
 <!-- Canonical URL -->
-<link rel='canonical' href='<%= `${meta.url}/${page.url}` %>' />
+<link rel='canonical' href='<%= new URL(page.url, meta.url) %>' />
 
 <!-- Webmention integration -->
 <link rel='webmention' href='https://webmention.io/nataliethistime.com/webmention' />
@@ -46,14 +46,14 @@
 
 <!-- Open Graph / Facebook -->
 <meta property='og:type' content='website' />
-<meta property='og:url' content='<%= `${meta.url}/${page.url}` %>' />
+<meta property='og:url' content='<%= new URL(page.url, meta.url) %>' />
 <meta property='og:title' content='<%= title %> | <%= meta.siteTagline %>' />
 <meta property='og:description' content='<%= description %>' />
 <meta property='og:image' content='' />
 
 <!-- Twitter -->
 <meta property='twitter:card' content='summary_large_image' />
-<meta property='twitter:url' content='<%= `${meta.url}/${page.url}` %>' />
+<meta property='twitter:url' content='<%= new URL(page.url, meta.url) %>' />
 <meta property='twitter:title' content='<%= title %> | <%= meta.siteTagline %>' />
 <meta property='twitter:description' content='<%= description %>' />
 <meta property='twitter:image' content='' />
