@@ -6,6 +6,15 @@ layout: page.ejs
 
 # Now
 
+## October 2025
+
+Can't believe it's been another month, I almost didn't realise. Very burnt out. Not sure what's important or what I'm
+good at anymore.
+
+🎥 [The Truman Show](https://www.imdb.com/title/tt0120382)
+
+📺 [Hacks](https://www.imdb.com/title/tt11815682)
+
 ## September 2025
 
 Still really struggling with mental health but starting to round the curve a little. Painted my garage and saw friends
